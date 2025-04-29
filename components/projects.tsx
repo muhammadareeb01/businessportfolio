@@ -8,12 +8,12 @@ import { useSectionInView } from "@/lib/hooks";
 import { motion } from "framer-motion";
 
 export default function Services() {
-  const { ref } = useSectionInView("Projects", 0.5);
+  const { ref } = useSectionInView("Services", 0.5);
 
   return (
     <section
       ref={ref}
-      id="projects"
+      id="services"
       className="scroll-mt-28 mb-28 w-[80%] mx-auto"
     >
       <SectionHeading>Our services</SectionHeading>
