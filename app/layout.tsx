@@ -1,5 +1,3 @@
-"use client";
-import { motion } from "framer-motion";
 import Header from "@/components/header";
 import "./globals.css";
 import { Inter } from "next/font/google";
@@ -11,11 +9,6 @@ import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Muhammad Areeb | Personal Portfolio",
-  description:
-    "Muhammad Areeb is a full-stack MERN developer with strong expertise.",
-};
 
 export default function RootLayout({
   children,
@@ -25,53 +18,18 @@ export default function RootLayout({
   return (
     <html lang="en" className="!scroll-smooth">
       <body
-        className={`${inter.className} bg-gray-50 text-[#184e77] relative pt-28 sm:pt-36 dark:bg-gray-900 dark:text-[#a6dcef]`}
+        className={`${inter.className} bg-gray-50 text-gray-950 relative pt-28 sm:pt-36 dark:bg-gray-900 dark:text-gray-50 dark:text-opacity-90`}
       >
-        <motion.div
-          className="bg-[#184e77] absolute top-[-6rem] -z-10 right-[35rem] h-[22rem] w-[28rem] rounded-full blur-[8rem] sm:h-[40rem] sm:w-[50rem]"
-          animate={{
-            rotate: 360,
-            opacity: [0.4, 0.8, 0.4],
-          }}
-          transition={{
-            rotate: {
-              repeat: Infinity,
-              duration: 60,
-              ease: "linear",
-            },
-            opacity: {
-              repeat: Infinity,
-              duration: 6,
-              ease: "easeInOut",
-            },
-          }}
-        />
+        <div className="bg-[#184e77] absolute top-[-6rem] -z-10 right-[45rem] h-[20rem] w-[20rem] rounded-full blur-[8rem] sm:w-[40rem] dark:bg-[#103f60]"></div>
 
-        <motion.div
-          className="bg-[#d0e8f2] absolute top-[-1rem] -z-10 left-[-35rem] h-[28rem] w-[40rem] rounded-full blur-[10rem] sm:h-[45rem] sm:w-[65rem]"
-          animate={{
-            rotate: 360,
-            opacity: [0.6, 0.8, 0.6],
-          }}
-          transition={{
-            rotate: {
-              repeat: Infinity,
-              duration: 90,
-              ease: "linear",
-            },
-            opacity: {
-              repeat: Infinity,
-              duration: 8,
-              ease: "easeInOut",
-            },
-          }}
-        />
+        <div className="bg-[#d0e8f2] absolute top-[-1rem] -z-10 left-[-35rem] h-[31.25rem] w-[50rem] rounded-full blur-[10rem] sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem] dark:bg-[#aac9d5]"></div>
 
         <ThemeContextProvider>
           <ActiveSectionContextProvider>
             <Header />
             {children}
             <Footer />
+
             <Toaster position="top-right" />
             <ThemeSwitch />
           </ActiveSectionContextProvider>
