@@ -6,6 +6,8 @@ import { links } from "@/lib/data";
 import Link from "next/link";
 import clsx from "clsx";
 import { useActiveSectionContext } from "@/context/active-section-context";
+import Image from "next/image";
+import logo from "@/public/myimage.png";
 
 export default function Header() {
   const { activeSection, setActiveSection, setTimeOfLastClick } =
@@ -13,24 +15,43 @@ export default function Header() {
 
   return (
     <header className="z-[999] relative">
-      <motion.div
-        className="fixed top-0 left-1/2 h-[4.5rem] w-full rounded-none border border-[#48bfe3]/40 bg-[#184e77]/80 shadow-lg shadow-black/[0.05] backdrop-blur-[0.5rem] sm:top-6 sm:h-[3.25rem] sm:w-[36rem] sm:rounded-full dark:border-[#48bfe3]/30 dark:bg-[#184e77]/75"
+      <motion.nav
+        className="fixed top-0 left-1/2 h-[4.5rem] w-full rounded-none border border-[#48bfe3]/40 bg-[#184e77]/80 shadow-lg shadow-black/[0.05] backdrop-blur-[0.5rem] sm:top-6 sm:h-[3.25rem] sm:w-[50rem] sm:rounded-full dark:border-[#48bfe3]/30 dark:bg-[#184e77]/75 flex items-center justify-around px-4 sm:px-6 -translate-x-1/2"
         initial={{ y: -100, x: "-50%", opacity: 0 }}
         animate={{ y: 0, x: "-50%", opacity: 1 }}
-      ></motion.div>
+        transition={{ duration: 0.5 }}
+      >
+        {/* Logo on the left */}
+        <motion.div
+          className="flex items-center"
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          <Image
+            src={logo}
+            alt="Logo"
+            width={40}
+            height={40}
+            quality={95}
+            priority={true}
+            className="h-10 w-10 rounded-full object-cover border-[0.2rem] border-[#48bfe3]/40 dark:border-[#48bfe3]/30 sm:h-8 sm:w-8"
+          />
+        </motion.div>
 
-      <nav className="flex fixed top-[0.15rem] left-1/2 h-12 -translate-x-1/2 py-2 sm:top-[1.7rem] sm:h-[initial] sm:py-0">
-        <ul className="flex w-[22rem] flex-wrap items-center justify-center gap-y-1 text-[0.9rem] font-medium text-white sm:w-[initial] sm:flex-nowrap sm:gap-5">
+        {/* Navigation Links on the right */}
+        <ul className="flex items-center gap-5 text-[0.9rem] font-medium text-white sm:gap-5">
           {links.map((link) => (
             <motion.li
-              className="h-3/4 flex items-center justify-center relative"
+              className="flex items-center justify-center relative"
               key={link.hash}
               initial={{ y: -100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
             >
               <Link
                 className={clsx(
-                  "flex w-full items-center justify-center px-3 py-3 hover:text-[#0077b6] transition dark:text-white/70 dark:hover:text-[#48bfe3]",
+                  "flex items-center justify-center px-3 py-3 hover:text-[#9bcce7] transition dark:text-white/70 dark:hover:text-[#48bfe3]",
                   {
                     "text-[#48bfe3] dark:text-[#48bfe3]":
                       activeSection === link.name,
@@ -59,7 +80,7 @@ export default function Header() {
             </motion.li>
           ))}
         </ul>
-      </nav>
+      </motion.nav>
     </header>
   );
 }
